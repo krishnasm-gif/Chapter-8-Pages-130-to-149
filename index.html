@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 8: Floating Bodies - Class 9 Physical Science (SCERT Telangana)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', 'Noto Sans Telugu', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 leading-relaxed">
+
+    <!-- VISITOR TRACKING MODAL -->
+    <div id="visitorModal" class="fixed inset-0 bg-slate-900/80 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center">
+            <h2 class="text-2xl font-bold text-blue-600 mb-2">Floating Bodies Study Portal</h2>
+            <p class="text-sm text-slate-600 mb-6">Please enter your Name and Roll Number to begin tracking your study session and timer automatically.</p>
+            <form id="visitorForm" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Full Name / పేరు</label>
+                    <input type="text" id="visitorName" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Roll Number / రోల్ నంబర్</label>
+                    <input type="text" id="visitorRoll" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Start Learning / అభ్యాసం ప్రారంభించండి</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FLOATING TIMER & REPORT BAR -->
+    <div class="bg-slate-900 text-white text-xs py-2 px-4 sticky top-0 z-40 flex justify-between items-center shadow-md">
+        <div class="flex items-center space-x-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="sessionTimer">Time Spent: 00:00</span>
+        </div>
+        <button onclick="sendReport()" class="bg-emerald-600 hover:bg-emerald-500 px-3 py-1 rounded text-white font-medium transition">Send Report to Teacher</button>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-12 px-6 text-center shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">Chapter 8: Floating Bodies</h1>
+        <p class="text-blue-200 text-sm md:text-base">Class 9 Physical Science | SCERT Telangana Syllabus (Pages 130 - 149)</p>
+    </header>
+
+    <!-- UPPER INDEX (QUICK NAVIGATION) -->
+    <nav class="bg-white border-b sticky top-9 z-30 shadow-sm overflow-x-auto whitespace-nowrap px-6 py-3 flex space-x-6 text-sm font-medium text-blue-600">
+        <a href="#intro" class="hover:underline">Introduction (130)</a>
+        <a href="#density" class="hover:underline">Density & Relative Density (131-133)</a>
+        <a href="#lactometer" class="hover:underline">Lactometer & Liquids (134-135)</a>
+        <a href="#archimedes" class="hover:underline">Archimedes' Principle (136-145)</a>
+        <a href="#pascal" class="hover:underline">Pascal's Principle (146-147)</a>
+        <a href="#keypoints" class="hover:underline">40 Key Points</a>
+        <a href="#glossary" class="hover:underline">Glossary (40 Terms)</a>
+        <a href="#exercises" class="hover:underline">Exercises & Q&A</a>
+        <a href="#exp-projects" class="hover:underline">Experiments & Projects</a>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- SECTION 1: INTRODUCTION -->
+        <section id="intro" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">Page 130</span>
+            <h2 class="text-2xl font-bold text-slate-800 mt-3 mb-4">Introduction to Floating and Sinking</h2>
+            <div class="space-y-4 text-slate-700">
+                <p><strong>English:</strong> You must have noticed that some things float on the surface of water and some things sink in it. Did you participate in the activity "floating & sinking" in the lesson on "materials" in class 6? If so, you might have wondered as to why some objects, which you expected would sink, float on water. Did you take one of those objects that floats on water, and tried to see if it floats on kerosene or coconut oil?</p>
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded text-slate-800">
+                    <p class="font-semibold text-amber-900">తెలుగు వివరణ (Telugu Description):</p>
+                    <p class="text-sm mt-1">మన దైనందిన జీవితంలో కొన్ని వస్తువులు నీటిపై తేలడం, మరికొన్ని నీటిలో మునిగిపోవడం గమనిస్తాం. 6వ తరగతిలో "పదార్థాలు" పాఠం కింద తేలుట మరియు మునుగుట గురించిన కార్యకలాపాలలో మీరు పాల్గొని ఉంటారు. మన ఆశ్రయానికి విరుద్ధంగా కొన్ని వస్తువులు నీటిలో ఎందుకు తేలుతాయి? అలా తేలే వస్తువులను కిరోసిన్ లేదా కొబ్బరి నూనెలో వేస్తే తేలుతాయా లేదా అని ఎప్పుడైనా పరిశీలించారా? ఈ అధ్యాయంలో మనం దీని గురించి వివరంగా తెలుసుకుంటాం.</p>
+                    <p class="text-xs text-amber-700 mt-2"><strong>Example / ఉదాహరణ:</strong> A small wooden block floats on water while a glass marble sinks. (చిన్న చెక్క ముక్క నీటిలో తేలుతుంది, కానీ గాజు గోళీ మునుగుతుంది.)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: DENSITY & RELATIVE DENSITY -->
+        <section id="density" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">Pages 131 - 133</span>
+            <h2 class="text-2xl font-bold text-slate-800 mt-3 mb-4">Density and Relative Density</h2>
+            <div class="space-y-4 text-slate-700">
+                <p><strong>English:</strong> In science, we try to ensure that each word we use has the same meaning for everyone. In the language of science, density is defined as mass per unit volume (Density = Mass / Volume). Units for density are g/cm³ or kg/m³. Relative density is the ratio of the density of an object to the density of water, and it has no units.</p>
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded text-slate-800">
+                    <p class="font-semibold text-amber-900">తెలుగు వివరణ (Telugu Description):</p>
+                    <p class="text-sm mt-1">శాస్త్రవేత్తలు ప్రతీ పదానికి ఖచ్చితమైన అర్ధాన్ని ఇస్తారు. సాంద్రత (Density) అనగా ప్రమాణ పరిమాణంలో ఉండే ద్రవ్యరాశి. సాంద్రత సూత్రం: సాంద్రత = ద్రవ్యరాశి / పరిమాణం. ప్రమాణాలు: g/cm³ లేదా kg/m³. ఒక వస్తువు సాంద్రతను నీటి సాంద్రతతో పోల్చడాన్ని 'సాపేక్ష సాంద్రత' (Relative Density) అంటారు. ఇది రెండు సరూప రాశుల నిష్పత్తి కాబట్టి దీనికి ప్రమాణాలు ఉండవు.</p>
+                    <p class="text-xs text-amber-700 mt-2"><strong>Example / ఉదాహరణ:</strong> Iron has a higher density than wood, so iron sinks while wood floats. (ఇనుము సాంద్రత చెక్క కంటే ఎక్కువ, కాబట్టి ఇనుము మునుగుతుంది, చెక్క తేలుతుంది.)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LACTOMETER & LIQUIDS -->
+        <section id="lactometer" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">Pages 134 - 135</span>
+            <h2 class="text-2xl font-bold text-slate-800 mt-3 mb-4">Relative Density of Liquids and Lactometer</h2>
+            <div class="space-y-4 text-slate-700">
+                <p><strong>English:</strong> We can also find the relative density of liquids. A lactometer is a simple instrument used to find the purity of milk by checking its relative density and buoyancy. Similarly, a hydrometer/densitometer is used to find the density of any liquid.</p>
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded text-slate-800">
+                    <p class="font-semibold text-amber-900">తెలుగు వివరణ (Telugu Description):</p>
+                    <p class="text-sm mt-1">ద్రవ పదార్థాల సాపేక్ష సాంద్రతను కూడా మనం కనుగొనవచ్చు. పాలలో నీరు కలిపితే దాని సాంద్రత మారుతుంది. పాలు స్వచ్ఛమైనవో కాదో తెలుసుకోవడానికి 'లాక్టోమీటర్' (Lactometer) అనే సరళమైన పరికరాన్ని ఉపయోగిస్తారు. అదేవిధంగా ఏదైనా ద్రవం యొక్క సాంద్రతను కనుగొనడానికి హైడ్రోమీటర్ లేదా డెన్సిటోమీటర్ వాడతారు.</p>
+                    <p class="text-xs text-amber-700 mt-2"><strong>Example / ఉదాహరణ:</strong> A lactometer sinks differently in watered milk compared to pure milk. (నీరు కలిపిన పాలలో లాక్టోమీటర్ మునిగే తీరు స్వచ్ఛమైన పాలలో కన్నా భిన్నంగా ఉంటుంది.)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: ARCHIMEDES PRINCIPLE -->
+        <section id="archimedes" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">Pages 136 - 145</span>
+            <h2 class="text-2xl font-bold text-slate-800 mt-3 mb-4">Buoyancy and Archimedes' Principle</h2>
+            <div class="space-y-4 text-slate-700">
+                <p><strong>English:</strong> When an object is immersed in a fluid, it experiences an upward force called buoyancy. Archimedes' principle states that when a body is immersed in a fluid, it experiences an upward force of buoyancy equal to the weight of fluid displaced by the immersed portion of the body.</p>
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded text-slate-800">
+                    <p class="font-semibold text-amber-900">తెలుగు వివరణ (Telugu Description):</p>
+                    <p class="text-sm mt-1">ద్రవంలో ముంచిన వస్తువు పైకి ఒక బలాన్ని అనుభవిస్తుంది, దీనిని ఉత్ప్లవ బలం లేదా తేలుడు బలం (Buoyancy) అంటారు. ఆర్కిమిడిస్ సూత్రం ప్రకారం, ఒక వస్తువును ద్రవంలో ముంచినప్పుడు అది అనుభవించే ఉత్ప్లవ బలం, ఆ వస్తువు తొలగించిన ద్రవపు బరువుకు సమానంగా ఉంటుంది.</p>
+                    <p class="text-xs text-amber-700 mt-2"><strong>Example / ఉదాహరణ:</strong> A stone immersed in water appears lighter because of the upward buoyant force. (నీటిలో ముంచిన రాయి ఉత్ప్లవ బలం కారణంగా తేలికగా అనిపిస్తుంది.)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: PASCAL'S PRINCIPLE -->
+        <section id="pascal" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">Pages 146 - 147</span>
+            <h2 class="text-2xl font-bold text-slate-800 mt-3 mb-4">Pascal's Principle and Hydraulic Systems</h2>
+            <div class="space-y-4 text-slate-700">
+                <p><strong>English:</strong> Pascal's principle states that external pressure applied to an enclosed body of fluid is transmitted equally in all directions throughout the fluid volume and the walls of the containing vessel. This principle is used in hydraulic jacks and car lifts.</p>
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded text-slate-800">
+                    <p class="font-semibold text-amber-900">తెలుగు వివరణ (Telugu Description):</p>
+                    <p class="text-sm mt-1">పాస్కల్ సూత్రం ప్రకారం, మూసివున్న ద్రవంపై ప్రయోగించిన బాహ్య పీడనం ద్రవంలో అన్ని దిశలలోనూ మరియు పాత్ర గోడలపైకి సమానంగా ప్రసరిస్తుంది. ఈ సూత్రం ఆధారంగానే ఆటోమొబైల్ వర్క్‌షాప్‌లలో హైడ్రాలిక్ జాక్‌లు మరియు కార్ లిఫ్ట్‌లు పనిచేస్తాయి.</p>
+                    <p class="text-xs text-amber-700 mt-2"><strong>Example / ఉదాహరణ:</strong> A small downward force on a hydraulic jack lifts a heavy vehicle. (హైడ్రాలిక్ జాక్‌పై చిన్న బలంతో భారీ వాహనాన్ని పైకి ఎత్తవచ్చు.)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 40 KEY POINTS -->
+        <section id="keypoints" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6">40 Key Points (40 ముఖ్యాంశాలు)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-slate-700">
+                <div class="bg-slate-50 p-3 rounded border">1. Objects with a density less than the liquid float on its surface. (ద్రవం సాంద్రత కంటే తక్కువ సాంద్రత ఉన్న వస్తువులు తేలుతాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">2. Density is defined as mass per unit volume (Density = Mass / Volume). (సాంద్రత అనగా ప్రమాణ పరిమాణ ద్రవ్యరాశి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">3. The SI unit of density is kg/m³ or g/cm³. (సాంద్రత SI ప్రమాణం kg/m³.)</div>
+                <div class="bg-slate-50 p-3 rounded border">4. Relative density is the ratio of object density to water density. (సాపేక్ష సాంద్రత అనేది వస్తువు సాంద్రతకు నీటి సాంద్రతకు గల నిష్పత్తి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">5. Relative density has no units as it is a ratio of identical quantities. (సాపేక్ష సాంద్రతకు ప్రమాణాలు లేవు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">6. Objects with relative density less than 1 float in water. (సాపేక్ష సాంద్రత 1 కంటే తక్కువ ఉన్న వస్తువులు నీటిలో తేలుతాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">7. Objects with relative density greater than 1 sink in water. (సాపేక్ష సాంద్రత 1 కంటే ఎక్కువ ఉన్నవి మునుగుతాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">8. Lactometer is used to test the purity of milk. (పొల శుద్ధతను లాక్టోమీటర్ ద్వారా కొలుస్తారు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">9. Hydrometer/densitometer measures the density of any liquid. (హైడ్రోమీటర్ ద్రవాల సాంద్రతను కొలుస్తుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">10. Buoyancy is the upward force exerted by fluids on objects. (ద్రవాలు వస్తువులపై ప్రయోగించే ఊರ್ಧ్వ బలాన్ని ఉత్ప్లవ బలం అంటారు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">11. Immersed objects appear to lose weight due to buoyant force. (మునిగిన వస్తువులు ఉత్ప్లవ బలం వల్ల బరువు కోల్పోయినట్లు కనిపిస్తాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">12. Archimedes' principle states buoyant force equals displaced fluid weight. (ఆర్కిమిడిస్ సూత్రం ప్రకారం ఉత్ప్లవ బలం తొలగించిన ద్రవ బరువుకు సమానం.)</div>
+                <div class="bg-slate-50 p-3 rounded border">13. Archimedes discovered this while bathing, crying out "Eureka!". (ఆర్కిమిడిస్ బాత్‌టబ్‌లో ఈ సూత్రాన్ని కనుగొని 'యూరికా' అన్నారు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">14. Atmospheric pressure is force per unit surface area of earth. (వాతావరణ పీడనం అనగా ప్రమాణ వైశాల్యంపై వాతావరణ బలం.)</div>
+                <div class="bg-slate-50 p-3 rounded border">15. Torricelli invented the first mercury barometer. (టారిసెల్లి తొలి పాదరస బేరోమీటర్ ను కనుగొన్నారు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">16. Normal atmospheric pressure supports 76 cm of mercury column. (సాధారణ వాతావరణ పీడనం 76 సెం.మీ పాదరస మట్టాన్ని నిలబెడుతుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">17. One atmosphere (1 atm) equals 1.01 × 10⁵ N/m² (Pascal). (1 వాతావరణ పీడనం 1.01 × 10⁵ Pa.)</div>
+                <div class="bg-slate-50 p-3 rounded border">18. Liquid pressure increases with depth. (లోతు పెరిగే కొద్దీ ద్రవ పీడనం పెరుగుతుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">19. Pressure inside a liquid at constant depth is constant. (స్థిరమైన లోతు వద్ద ద్రవ పీడనం స్థిరంగా ఉంటుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">20. Pascal's principle states pressure in enclosed fluids transmits equally. (పాస్కల్ సూత్రం ప్రకారం మూసివున్న ద్రవ పీడనం సమానంగా ప్రసరిస్తుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">21. Hydraulic jacks in auto workshops work on Pascal's principle. (వర్క్‌షాప్‌ హైడ్రాలిక్ జాక్‌లు పాస్కల్ సూత్రంపై పనిచేస్తాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">22. Iron ships float because their hollow shape displaces large water volume. (బోలుగా ఉండే ఇనుప ఓడలు ఎక్కువ నీటిని తొలగించి తేలుతాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">23. Salt water has higher density than fresh water, easing swimming. (ఉప్పు నీటి సాంద్రత ఎక్కువ కావున ఈత కొట్టడం సులువు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">24. Freely falling bodies experience a state of weightlessness. (స్వేచ్ఛా పతనంలో ఉన్న వస్తువులు భారరహిత స్థితిని అనుభవిస్తాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">25. Centre of gravity is the average position of weight distribution. (గురుత్వ కేంద్రం అనగా బరువు కేంద్రీకృతమైన సగటు స్థానం.)</div>
+                <div class="bg-slate-50 p-3 rounded border">26. An object is stable if its line of gravity falls within its base. (గురుత్వ కేంద్ర లంబరేఖ ఆధారంలో ఉంటే వస్తువు స్థిరంగా ఉంటుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">27. Kerosene floats on water due to lesser density (0.8 g/cm³). (కిరోసిన్ సాంద్రత నీటి కంటే తక్కువ కావున తేలుతుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">28. Ice floats on water because ice is less dense than water. (నీటి కంటే మంచు సాంద్రత తక్కువ కనుక తేలుతుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">29. Acceleration due to gravity (g) near earth is 9.8 m/s². (భూమిపై గురుత్వ త్వరణం 9.8 m/s².)</div>
+                <div class="bg-slate-50 p-3 rounded border">30. Buoyant force does not depend on the depth of object immersion. (ఉత్ప్లవ బలం వస్తువు మునిగే లోతుపై ఆధారపడదు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">31. Submarines use ballast tanks to control sinking and floating. (జలాంతర్గాములు ట్యాంకుల ద్వారా మునగడం, తేలడం నియంత్రిస్తాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">32. 1 Newton per square meter is termed as 1 Pascal (1 N/m² = 1 Pa). (1 N/m² ను పాస్కల్ అంటారు.)</div>
+                <div class="bg-slate-50 p-3 rounded border">33. Apparent loss of weight equals real buoyant force. (కోల్పోయినట్లు కనిపించే బరువు ఉత్ప్లవ బలానికి సమానం.)</div>
+                <div class="bg-slate-50 p-3 rounded border">34. Atmospheric pressure can hold about 76 cm of mercury. (వాతావరణ పీడనం 76 సెం.మీ పాదరసాన్ని నిలబెడుతుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">35. Hydraulic brakes in vehicles use Pascal's principle. (వాహనాలలో హైడ్రాలిక్ బ్రేక్‌లు పాస్కల్ సూత్రం వాడతాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">36. Objects weigh slightly less in air than vacuum due to air buoyancy. (గాలి ఉత్ప్లవ బలం వల్ల వస్తువులు గాలిలో కాస్త తక్కువ బరువుంటాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">37. Wide base and low centre of gravity increase object stability. (వెడల్పు ఆధారం, తక్కువ గురుత్వ కేంద్రం స్థిరత్వాన్ని పెంచుతాయి.)</div>
+                <div class="bg-slate-50 p-3 rounded border">38. Relative density of a liquid compares its weight to equal water volume. (సాపేక్ష సాంద్రత ద్రవ బరువును నీటి బరువుతో పోలుస్తుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">39. Total internal reflection occurs when angle of incidence exceeds critical angle. (పతన కోణం సందిగ్ధ కోణం దాటితే సంపూర్ణాంతర పరావర్తనం జరుగుతుంది.)</div>
+                <div class="bg-slate-50 p-3 rounded border">40. Archimedes' principle is core to marine engineering and ship building. (ఆర్కిమిడిస్ సూత్రం నౌకా నిర్మాణానికి మూలాధారం.)</div>
+            </div>
+        </section>
+
+        <!-- 40 GLOSSARY TERMS -->
+        <section id="glossary" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6">Glossary Vocabulary (40 పదకోశ పదాలు)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="p-3 bg-slate-50 rounded border"><strong>1. Density (సాంద్రత):</strong> Mass per unit volume.<br><em>Ex:</em> The density of iron is high. (ఇనుము సాంద్రత ఎక్కువ.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>2. Relative Density (సాపేక్ష సాంద్రత):</strong> Ratio of object density to water density.<br><em>Ex:</em> Relative density has no units. (సాపేక్ష సాంద్రతకు ప్రమాణాలు లేవు.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>3. Buoyancy (ఉత్ప్లవ బలం):</strong> Upward force exerted by fluids.<br><em>Ex:</em> Water exerts buoyancy on wood. (నీరు చెక్కపై ఉత్ప్లవ బలాన్ని చూపుతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>4. Buoyant Force (ఉత్ప్లవ బలము):</strong> Net upward force on a submerged body.<br><em>Ex:</em> Buoyant force equals displaced water weight. (ఉత్ప్లవ బలం తొలగించిన నీటి బరువుకు సమానం.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>5. Archimedes' Principle (ఆర్కిమిడిస్ సూత్రము):</strong> Law relating buoyant force to displaced fluid.<br><em>Ex:</em> Archimedes' principle explains why ships float. (ఆర్కిమిడిస్ సూత్రం ఓడలు తేలడాన్ని వివరిస్తుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>6. Hydrometer (హైడ్రోమీటర్):</strong> Instrument for measuring liquid density.<br><em>Ex:</em> A hydrometer is used in industries. (పరిశ్రమలలో హైడ్రోమీటర్ వాడతారు.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>7. Lactometer (లాక్టోమీటర్):</strong> Device to test milk purity.<br><em>Ex:</em> The milkman checked milk with a lactometer. (పాల వ్యాపారి లాక్టోమీటర్‌తో పాలను పరీక్షించాడు.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>8. Atmospheric Pressure (వాతావరణ పీడనం):</strong> Pressure exerted by earth's atmosphere.<br><em>Ex:</em> Atmospheric pressure decreases at high altitudes. (ఎత్తైన ప్రదేశాలలో పీడనం తక్కువ.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>9. Barometer (బేరోమీటర్):</strong> Instrument to measure atmospheric pressure.<br><em>Ex:</em> A barometer predicts weather changes. (బేరోమీటర్ వాతావరణ మార్పులను సూచిస్తుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>10. Pascal's Principle (పాస్కల్ సూత్రము):</strong> Transmission of pressure in enclosed fluids.<br><em>Ex:</em> Hydraulic lifts operate on Pascal's principle. (హైడ్రాలిక్ లిఫ్ట్‌లు పాస్కల్ సూత్రంపై పనిచేస్తాయి.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>11. Hydraulic Press (హైడ్రాలిక్ ప్రెస్):</strong> Machine using fluid pressure multiplication.<br><em>Ex:</em> A hydraulic press bends heavy metal. (హైడ్రాలిక్ ప్రెస్ లోహాలను వంచుతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>12. Fluid (ప్రవహి / ద్రవం):</strong> Substance that can flow.<br><em>Ex:</em> Water and air are fluids. (నీరు మరియు గాలి ప్రవహిలు.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>13. Pressure (పీడనం):</strong> Force acting per unit area.<br><em>Ex:</em> Pressure increases with depth. (లోతుకు వెళ్లేకొద్దీ పీడనం పెరుగుతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>14. Centre of Gravity (గురుత్వ కేంద్రం):</strong> Point where total weight is concentrated.<br><em>Ex:</em> Centre of gravity determines stability. (గురుత్వ కేంద్రం స్థిరత్వాన్ని నిర్ణయిస్తుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>15. Stability (స్థిరత్వము):</strong> Ability of an object to maintain balance.<br><em>Ex:</em> Wide base increases stability. (వెడల్పు ఆధారం స్థిరత్వాన్ని పెంచుతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>16. Free Fall (స్వేచ్ఛా పతనము):</strong> Motion under gravity alone.<br><em>Ex:</em> An object in vacuum is in free fall. (శూన్యంలో పడే వస్తువు స్వేచ్ఛా పతనంలో ఉంటుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>17. Weightlessness (భారరహిత స్థితి):</strong> Condition where apparent weight is zero.<br><em>Ex:</em> Astronauts experience weightlessness. (వ్యోమగాములు భారరహిత స్థితిని అనుభవిస్తారు.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>18. Mass (ద్రవ్యరాశి):</strong> Amount of matter in a body.<br><em>Ex:</em> Mass remains constant everywhere. (ద్రవ్యరాశి ఎక్కడైనా స్థిరం.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>19. Weight (బరువు):</strong> Force of gravity acting on mass.<br><em>Ex:</em> Weight changes on moon. (చంద్రునిపై బరువు మారుతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>20. Upthrust (ఊರ್ಧ్వ బలము):</strong> Another term for buoyant force.<br><em>Ex:</em> Upthrust acts against gravity. (ఊರ್ಧ్వ బలం గురుత్వాకర్షణకు వ్యతిరేకం.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>21. Displacement (స్థానభ్రంశము):</strong> Volume or weight of fluid pushed aside.<br><em>Ex:</em> The stone caused water displacement. (రాయి నీటి స్థానభ్రంశానికి కారణమైంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>22. Torricelli (టారిసెల్లి):</strong> Physicist who invented barometer.<br><em>Ex:</em> Torricelli used mercury. (టారిసెల్లి పాదరసాన్ని వాడారు.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>23. Viscosity (స్నిగ్ధత):</strong> Internal friction of a fluid.<br><em>Ex:</em> Honey has high viscosity. (తేనెకు స్నిగ్ధత ఎక్కువ.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>24. Surface Tension (తలతన్యత):</strong> Force holding liquid surface molecules.<br><em>Ex:</em> Surface tension helps bugs walk on water. (తలతన్యత పురుగులకు సహాయపడుతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>25. Apparent Weight (ఆభాసిక బరువు):</strong> Weight felt in fluid medium.<br><em>Ex:</em> Apparent weight in water is less. (నీటిలో ఆభాసిక బరువు తక్కువ.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>26. Submersible (సబ్ మెర్సిబుల్):</strong> Vehicle designed for underwater.<br><em>Ex:</em> Submersibles explore deep oceans. (సబ్ మెర్సిబుల్స్ సముద్రాలను అన్వేషిస్తాయి.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>27. Ballast Tank (బాలస్ట్ ట్యాంక్):</strong> Compartment for water storage in ships.<br><em>Ex:</em> Submarines fill ballast tanks. (జలాంతర్గామి ట్యాంకులు నింపుకుంటుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>28. Manometer (మనోమీటర్):</strong> Device to measure gas pressure.<br><em>Ex:</em> Manometer measures pipe fluid pressure. (పైపులలో పీడనాన్ని కొలుస్తుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>29. Pascal (పాస్కల్):</strong> SI unit of pressure.<br><em>Ex:</em> Pressure is expressed in Pascals. (పీడనాన్ని పాస్కల్స్‌లో చూపుతారు.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>30. U-Tube (యు-నాళము):</strong> Glass tube shaped like letter U.<br><em>Ex:</em> U-tubes compare liquid densities. (యు-నాళాలు సాంద్రతలను పోలుస్తాయి.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>31. Incompressible (అసమ్మీడ్యత):</strong> Substance whose volume cannot be reduced.<br><em>Ex:</em> Liquids are incompressible. (ద్రవాలు కుదించలేనివి.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>32. Calibration (క్రమాంకనము):</strong> Marking scale on instrument.<br><em>Ex:</em> Lactometer has a calibration. (లాక్టోమీటర్‌పై కొలత ఉంటుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>33. Equilibrium (సమతాస్థితి):</strong> State of balanced forces.<br><em>Ex:</em> A floating body is in equilibrium. (తేలే వస్తువు సమతాస్థితిలో ఉంటుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>34. Buoy (బాయ్ / తెప్ప):</strong> Floating marker anchored in water.<br><em>Ex:</em> A yellow buoy marks the zone. (పసుపు బాయ్ ప్రాంతాన్ని సూచిస్తుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>35. Piston (పిస్టన్):</strong> Sliding cylinder in hydraulic tube.<br><em>Ex:</em> Hydraulic jacks use pistons. (హైడ్రాలిక్ జాక్ పిస్టన్‌‌లను వాడతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>36. Load (బరువు / భారము):</strong> Weight supported by structure.<br><em>Ex:</em> The ship carries a heavy load. (ఓడ భారీ బరువును మోస్తుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>37. Overflow Vessel (అతిప్రవాహ పాత్ర):</strong> Vessel to collect displaced liquid.<br><em>Ex:</em> Overflow vessels measure water displacement. (నీటి స్థానభ్రంశాన్ని కొలుస్తాయి.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>38. Momentum (ద్రవ్యవేగము):</strong> Product of mass and velocity.<br><em>Ex:</em> Moving bodies possess momentum. (కదిలే వస్తువులకు ద్రవ్యవేగం ఉంటుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>39. Gravity (గురుత్వాకర్షణ):</strong> Force attracting objects to earth.<br><em>Ex:</em> Gravity pulls objects down. (గురుత్వాకర్షణ క్రిందికి లాగుతుంది.)</div>
+                <div class="p-3 bg-slate-50 rounded border"><strong>40. Density Gradient (సాంద్రతా ప్రవణత):</strong> Rate of change of density.<br><em>Ex:</em> Atmospheric density gradient affects refraction. (వాతావరణ ప్రవణత వక్రీభవనాన్ని మారుస్తుంది.)</div>
+            </div>
+        </section>
+
+        <!-- EXERCISES & Q&A SECTION -->
+        <section id="exercises" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100 space-y-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Textbook Exercises & Q&A (అభ్యాసాలు మరియు ప్రశ్న-జవాబులు)</h2>
+
+            <!-- Reflections on Concepts -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-blue-700 border-b pb-2">I. Reflections on Concepts (అవగాహన - ప్రతిబింబాలు)</h3>
+                
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">1. Why do some objects float on the water? And some sink? (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> కొన్ని వస్తువులు నీటిలో ఎందుకు తేలుతాయి, కొన్ని ఎందుకు మునుగుతాయి?</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> Objects whose density is less than water float on it, whereas objects whose density is greater than water sink. When an object floats, the upward buoyant force equals its weight.<br><strong>తెలుగు వివరణ:</strong> నీటి సాంద్రత కంటే తక్కువ సాంద్రత గల వస్తువులు నీటిలో తేలుతాయి, ఎక్కువ సాంద్రత గల వస్తువులు మునుగుతాయి. అలాగే ఉత్ప్లవ బలం వస్తువు బరువుకు సమానమైనప్పుడు వస్తువు తేలుతుంది.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">2. Explain density and relative density and write their formulae. (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> సాంద్రత మరియు సాపేక్ష సాంద్రతలను వివరించి సూత్రాలు రాయండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> Density is mass per unit volume. Formula: Density = Mass / Volume. Relative density is the ratio of the density of an object to the density of water. Formula: Relative Density = Density of object / Density of water.<br><strong>తెలుగు వివరణ:</strong> సాంద్రత అనగా ప్రమాణ పరిమాణంలో ఉండే ద్రవ్యరాశి. సూత్రం: సాంద్రత = ద్రవ్యరాశి / పరిమాణం. వస్తువు సాంద్రతకు, నీటి సాంద్రతకు గల నిష్పత్తిని సాపేక్ష సాంద్రత అంటారు. సూత్రం: సాపేక్ష సాంద్రత = వస్తువు సాంద్రత / నీటి సాంద్రత.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">3. Explain buoyancy in your own words. (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> ఉత్ప్లవ బలాన్ని మీ సొంత మాటలలో వివరించండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> When an object is immersed in a fluid, the fluid exerts an upward force on it. This supporting upward push is called buoyancy or buoyant force.<br><strong>తెలుగు వివరణ:</strong> ఏదైనా వస్తువును ద్రవంలో ముంచినప్పుడు, ఆ ద్రవం వస్తువుపైకి ఒక ఊರ್ಧ్వ బలాన్ని ప్రయోగిస్తుంది. ఈ బలాన్నే ఉత్ప్లవ బలం లేదా తేలుడు బలం అంటారు.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">4. How can you find the relative density of a liquid? (AS3)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> ద్రవం యొక్క సాపేక్ష సాంద్రతను ఎలా కనుగొనవచ్చు?</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> By dividing the weight of a fixed volume of the liquid by the weight of an equal volume of water using a relative density bottle. Formula: Relative Density of liquid = Weight of liquid / Weight of same volume of water.<br><strong>తెలుగు వివరణ:</strong> ఒక నిర్దిష్ట పరిమాణం గల ద్రవం బరువును, అదే పరిమాణం గల నీటి బరువుతో భాగించడం ద్వారా ద్రవం యొక్క సాపేక్ష సాంద్రతను కనుగొనవచ్చు. సూత్రం: ద్రవ సాపేక్ష సాంద్రత = ద్రవపు బరువు / సమాన పరిమాణం గల నీటి బరువు.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">5. Draw the diagram of a mercury barometer. (AS5)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> పాదరస బేరోమీటర్ పటాన్ని గీయండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> Refer to Fig-7 on page 140 of the textbook showing a glass tube filled with mercury inverted in a mercury bowl with a 76 cm column.<br><strong>తెలుగు వివరణ:</strong> పాఠ్యపుస్తకంలోని పేజీ 140 లోని చిత్రం-7 (పాదరస బేరోమీటర్ పటం) చూసి గీయవలెను.</p>
+                </div>
+            </div>
+
+            <!-- Application of Concepts -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-blue-700 border-b pb-2">II. Application of Concepts (అవుసరాల అన్వయం)</h3>
+                
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">1. A solid sphere has a radius of 2 cm and a mass of 0.05 kg. What is the relative density of the sphere? [Ans: 1.49] (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> 2 సెం.మీ వ్యాసార్థం మరియు 0.05 కేజీల ద్రవ్యరాశి గల గోళం సాపేక్ష సాంద్రత ఎంత?</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Solution:</strong> Radius r = 2 cm. Volume V = (4/3)πr³ = 33.51 cm³. Mass m = 0.05 kg = 50 g. Density ρ = 50 / 33.51 = 1.49 g/cm³. Relative density = 1.49 / 1 = 1.49.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">2. A small bottle weighs 20 g when empty and 22 g when filled with water. When it is filled with oil it weighs 21.76 g. What is the density of oil? [Ans: 0.88 g/cm³] (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> ఒక చిన్న సీసా బరువు ఖాళీగా ఉన్నప్పుడు 20 గ్రా, నీటితో నింపినప్పుడు 22 గ్రా. నూనెతో నింపితే 21.76 గ్రా. నూనె సాంద్రత ఎంత?</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Solution:</strong> Mass of water = 22 - 20 = 2 g (Volume = 2 cm³). Mass of oil = 21.76 - 20 = 1.76 g. Density of oil = 1.76 g / 2 cm³ = 0.88 g/cm³.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">3. An ice cube floats on water in a glass tumbler (density of ice = 0.9 g/cm³). Will the water level rise when the ice melts completely? (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> గాజు గ్లాసులో నీటిపై మంచు గడ్డ తేలుతోంది. మంచు పూర్తిగా కరిగితే నీటి మట్టం పెస్ట్తుందా?</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> No, the water level will not rise. Floating ice displaces water equal to its own weight. When it melts, the volume of water formed equals the displaced water volume, keeping the level constant.<br><strong>తెలుగు వివరణ:</strong> నీటి మట్టం పెరగదు. మంచు గడ్డ తేలేటప్పుడు తన బరువుకు సమానమైన నీటిని తొలగిస్తుంది. అది కరిగినప్పుడు వచ్చే నీటి పరిమాణం తొలగించిన నీటి పరిమాణానికి సమానంగా ఉంటుంది.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">4. Find the pressure at a depth of 10m in water if atmospheric pressure is 100 kPa. [Ans: 198 kPa] (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> వాతావరణ పీడనం 100 kPa అయితే, నీటిలో 10 మీటర్ల లోతు వద్ద పీడనాన్ని కనుగొనండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Solution:</strong> P = P0 + hρg = 100 kPa + (10 m × 1000 kg/m³ × 9.8 m/s²) = 100 kPa + 98 kPa = 198 kPa.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">5. How can you appreciate the technology of making ships that float using materials which sink in water? (AS6)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> నీటిలో మునిగే ఇనుముతో నౌకలను తేలేలా చేసే సాంకేతికతను మీరు ఎలా అభినందిస్తారు?</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> Iron sinks because of high density, but engineering hollows it out to displace large water volumes. This applies Archimedes' principle brilliantly, allowing massive steel ships to carry heavy loads.<br><strong>తెలుగు వివరణ:</strong> ఇనుము నీటిలో మునిగినా, దానిని బోలుగా చేసి ఎక్కువ నీటిని తొలగించేలా ఓడలను తయారుచేస్తారు. ఇది ఆర్కిమిడిస్ సూత్రాన్ని అన్వయించి భారీ బరువులను మోసే అద్భుతమైన సాంకేతికత.</p>
+                </div>
+            </div>
+
+            <!-- Higher Order Thinking Questions -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-blue-700 border-b pb-2">III. Higher Order Thinking Questions (ఉన్నత స్థాయి ఆలోచనా ప్రశ్నలు)</h3>
+                
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">1. Can you make iron to float in water? How? (AS3)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> ఇనుము నీటిలో తేలేలా చేయగలవా? ఎలా?</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> Yes, by shaping it into a hollow bowl or vessel to increase its volume so it displaces sufficient water to support its weight.<br><strong>తెలుగు వివరణ:</strong> అవును, దానిని బోలుగా గిన్నె లేదా పాత్ర ఆకారంలో మార్చి పరిమాణాన్ని పెంచడం ద్వారా తగినంత నీటిని తొలగించి తేలేలా చేయవచ్చు.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">2. Where do you observe Archimedes' principle in daily life? Give two examples. (AS7)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> దైనందిన జీవితంలో ఆర్కిమిడిస్ సూత్రం ఎక్కడ గమనిస్తారు? రెండు ఉదాహరణలు ఇవ్వండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> 1. Floating of ships and submarines. 2. Swimming and floating easily in salty seawater.<br><strong>తెలుగు వివరణ:</strong> 1. ఓడలు మరియు జలాంతర్గాములు నీటిలో తేలడం. 2. ఉప్పు నీటిలో మనుషులు సులభంగా తేలడం.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">3. Do all objects that sink in water, sink in oil? Give reason. (AS1)</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> నీటిలో మునిగే అన్ని వస్తువులు నూనెలో కూడా మునుగుతాయా? కారణం తెలపండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Answer:</strong> No. An object sinking in water might float in a denser liquid like honey or glycerin due to higher buoyancy.<br><strong>తెలుగు వివరణ:</strong> లేదు. నీటిలో మునిగే వస్తువు తేనె లేదా గ్లిజరిన్ వంటి సాంద్రత ఎక్కువ ఉన్న ద్రవాలలో తేలవచ్చు.</p>
+                </div>
+            </div>
+
+            <!-- Multiple Choice Questions -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-blue-700 border-b pb-2">IV. Multiple Choice Questions (బహుళైచ్ఛిక ప్రశ్నలు)</h3>
+                
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2 text-sm">
+                    <p><strong>1. Unit of relative density is:</strong> [ d ]<br>a) g/cm³ &nbsp; b) cm/g³ &nbsp; c) N/m² &nbsp; d) No units</p>
+                    <p><strong>2. The instrument used to measure the purity of milk is:</strong> [ c ]<br>a) Barometer &nbsp; b) Hygrometer &nbsp; c) Lactometer &nbsp; d) Speedometer</p>
+                    <p><strong>3. If P₀ = Pressure, ρ = Density, h = height, g = gravity, atmospheric pressure =</strong> [ a ]<br>a) P₀ = ρ h g &nbsp; b) P = m g h &nbsp; c) P = v g h &nbsp; d) P = ½ m g h</p>
+                    <p><strong>4. The first barometer with mercury was invented by:</strong> [ d ]<br>a) Pascal &nbsp; b) Archimedes &nbsp; c) Newton &nbsp; d) Torricelli</p>
+                    <p><strong>5. The hydraulic jack in automobile workshops works on the principle of:</strong> [ b ]<br>a) Archimedes &nbsp; b) Pascal &nbsp; c) Torricelli &nbsp; d) Newton</p>
+                    <p><strong>6. The density of water at 25°C is:</strong> [ a ]<br>a) 1 g/cm³ &nbsp; b) 2 g/cm³ &nbsp; c) 3 g/cm³ &nbsp; d) 0.99 g/cm³</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUGGESTED EXPERIMENTS & PROJECTS SECTION -->
+        <section id="exp-projects" class="bg-white rounded-xl shadow-sm p-6 md:p-8 border border-slate-100 space-y-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Suggested Experiments & Projects (సూచించిన ప్రయోగాలు మరియు ప్రాజెక్టులు)</h2>
+
+            <!-- Suggested Experiments -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-blue-700 border-b pb-2">Suggested Experiments (సూచించిన ప్రయోగాలు)</h3>
+                
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">1. Conduct an experiment to find the relative densities of different substances and write a report.</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> వివిధ పదార్థాల సాపేక్ష సాంద్రతలను కనుగొనడానికి ప్రయోగం నిర్వహించి నివేదిక రాయండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Procedure:</strong> Take solid objects (rubber eraser, wood, glass slide, iron nail). Weigh each object using an electronic balance. Use an overflow vessel and measuring cylinder to find the volume of water displaced by each object (equal to the weight of water displaced). Calculate relative density by dividing the weight of the object by the weight of the displaced water. Record in a table and report findings.<br><strong>తెలుగు వివరణ:</strong> రబ్బరు ఎరేజర్, చెక్క ముక్క, ఇనుప ములుకులను తూకం వేయాలి. ఓవర్‌ఫ్లో వెసెల్ ద్వారా వాటి ద్వారా స్థానభ్రంశం చెందిన నీటి బరువును కనుగొనాలి. వస్తువు బరువును తొలగించిన నీటి బరువుతో భాగించి సాపేక్ష సాంద్రతను నిర్ధారించాలి.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">2. Conduct an experiment to understand the phenomenon that a stone immersed in water loses its weight. Write a report on it.</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> నీటిలో ముంచిన రాయి తన బరువును కోల్పోతుందనే దృగ్విషయాన్ని అర్థం చేసుకోవడానికి ప్రయోగం చేయండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Procedure:</strong> Suspend a stone from a spring balance and note its air weight. Now, lower the stone into a beaker filled with water. Observe the new reading on the spring balance. The apparent decrease in weight equals the buoyant force exerted by water.<br><strong>తెలుగు వివరణ:</strong> స్ప్రింగ్ బ్యాలెన్స్‌కు రాయిని వేలాడదీసి గాలిలో బరువు చూడాలి. తరువాత నీటిలో ముంచినప్పుడు స్ప్రింగ్ బ్యాలెన్స్ చూపే తగ్గిన బరువును (ఉత్ప్లవ బలం) గమనించి నివేదిక రాయాలి.</p>
+                </div>
+            </div>
+
+            <!-- Suggested Projects -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-blue-700 border-b pb-2">Suggested Projects (సూచించిన ప్రాజెక్టులు)</h3>
+                
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">1. The oil brakes in vehicles work on Pascal's principle. Collect information on the working of air brakes in vehicles and write a report.</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> వాహనాలలో ఆయిల్ బ్రేక్‌లు పాస్కల్ సూత్రంపై పనిచేస్తాయి. వాహనాలలో ఎయిర్ బ్రేక్‌ల పనితీరుపై సమాచారాన్ని సేకరించి నివేదిక రాయండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Project Details:</strong> Air brakes use compressed air stored in tanks. When the brake pedal is pressed, compressed air valves open, transmitting pressure through pipes to apply force on brake shoes against the wheels, stopping the vehicle based on fluid pressure principles.<br><strong>తెలుగు వివరణ:</strong> ఎయిర్ బ్రేక్‌లు కుదించబడిన గాలి పీడనాన్ని ఉపయోగించి వాహనాలను నిలిపివేస్తాయి. పెడ్రొ నొక్కినప్పుడు గాలి పీడనం ద్వారా బ్రేక్ షూస్‌పై బలం ప్రసరిస్తుంది.</p>
+                </div>
+
+                <div class="p-4 bg-slate-50 rounded-lg border space-y-2">
+                    <p class="font-bold text-slate-900">2. Find the relative densities of different fruits and vegetables and write a report.</p>
+                    <p class="text-sm text-slate-600"><strong>తెలుగు:</strong> వివిధ పండ్లు మరియు కూరగాయల సాపేక్ష సాంద్రతలను కనుగొని నివేదిక రాయండి.</p>
+                    <p class="text-sm bg-blue-50 p-3 rounded"><strong>Project Details:</strong> Collect fruits like apples, oranges, bananas, and vegetables like potatoes and tomatoes. Drop them in water to see if they float or sink. Measure their mass and volume using displacement to calculate their relative density and record which ones have relative density greater or less than 1.<br><strong>తెలుగు వివరణ:</strong> ఆపిల్, బత్తాయి, బంగాళాదుంప వంటి కూరగాయలు నీటిలో తేలుతాయో లేక మునుగుతాయో పరిశీలించి, వాటి సాపేక్ష సాంద్రతలను గణించి పట్టిక తయారుచేయాలి.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition z-40">
+        ↑ Top
+    </button>
+
+    <!-- SCRIPT FOR TRACKING & TIMER -->
+    <script>
+        let startTime = Date.now();
+        let timerInterval;
+
+        document.getElementById('visitorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('visitorName').value;
+            const roll = document.getElementById('visitorRoll').value;
+            if(name && roll) {
+                document.getElementById('visitorModal').style.display = 'none';
+                startTimer();
+            }
+        });
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                let elapsed = Math.floor((Date.now() - startTime) / 1000);
+                let mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+                let secs = String(elapsed % 60).padStart(2, '0');
+                document.getElementById('sessionTimer').innerText = `Time Spent: ${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function sendReport() {
+            const name = document.getElementById('visitorName').value || "Unknown Student";
+            const roll = document.getElementById('visitorRoll').value || "N/A";
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const subject = encodeURIComponent("Study Report - Floating Bodies Chapter");
+            const body = encodeURIComponent(`Student Name: ${name}\nRoll Number: ${roll}\nTotal Study Time: ${elapsed} seconds.`);
+            window.location.href = `mailto:balaswamysm@gmail.com?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+</html>
